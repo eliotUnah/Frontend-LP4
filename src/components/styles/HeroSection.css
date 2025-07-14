@@ -1,0 +1,140 @@
+.hero {
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  background: linear-gradient(to right, var(--indigo-600), var(--purple-600));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-text {
+  font-size: 1.25rem;
+  color: var(--gray-600);
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero-demo {
+  position: relative;
+}
+
+.demo-container {
+  position: relative;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.demo-content {
+  background: linear-gradient(to bottom right, var(--indigo-100), var(--purple-100));
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.demo-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--indigo-800);
+  margin-bottom: 1.5rem;
+}
+
+.habits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.habit-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.habit-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--indigo-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+
+.habit-name {
+  font-weight: 500;
+}
+
+.demo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--indigo-200);
+}
+
+.streak {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--indigo-600);
+}
+
+.add-habit {
+  color: var(--indigo-600);
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.add-habit:hover {
+  color: var(--indigo-700);
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+}
