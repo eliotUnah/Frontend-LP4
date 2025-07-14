@@ -19,37 +19,66 @@ export function AuthProvider({ children }) {
 
   // 🔐 LOGIN: Firebase + envío al backend
   const login = async (email, password) => {
-    const userCred = await signInWithEmailAndPassword(auth, email, password);
-    const idToken = await userCred.user.getIdToken();
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = await userCred.user.getIdToken();
 
-    // ✅ Solo en login se envía al backend
-    await axios.post("http://localhost:5000/auth/iniciar-sesion", { idToken }, {
-      withCredentials: true
-    });
+      // Solo en login se envía al backend para crear cookie httpOnly con JWT
+      await axios.post(
+        "http://localhost:5000/auth/iniciar-sesion",
+        { idToken },
+        { withCredentials: true }
+      );
 
-    setCurrentUser(userCred.user);
+      setCurrentUser(userCred.user);
+    } catch (error) {
+      // Aquí puedes agregar manejo de errores más específico
+      throw error;
+    }
   };
 
-  //  SIGNUP: solo crea la cuenta, no llama al backend
+  // SIGNUP: solo crea la cuenta, no llama al backend
   const signup = async (email, password) => {
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
     setCurrentUser(userCred.user);
-    return userCred; // Se usa en tu Register.jsx para obtener el idToken si luego lo necesitas
+    return userCred;
   };
 
-  //  LOGOUT: Firebase + backend
+  // LOGOUT: Solo Firebase, no backend (no tienes ruta logout)
   const logout = async () => {
-    await axios.post("http://localhost:5000/auth/logout", {}, { withCredentials: true });
-    await signOut(auth);
-    setCurrentUser(null);
+    try {
+      await signOut(auth);
+      setCurrentUser(null);
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
-  // Listener de sesión
+  // Verificar sesión backend y Firebase onAuthStateChanged
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
+    // Primero escuchar cambios en Firebase
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          // Preguntar al backend si hay sesión válida con la cookie
+          const res = await axios.get("http://localhost:5000/auth/usuario-actual", {
+            withCredentials: true,
+          });
+
+          if (res.data?.user) {
+            setCurrentUser(res.data.user);
+          } else {
+            setCurrentUser(null);
+          }
+        } catch {
+          setCurrentUser(null);
+        }
+      } else {
+        setCurrentUser(null);
+      }
       setLoading(false);
     });
+
     return unsubscribe;
   }, []);
 
@@ -57,7 +86,7 @@ export function AuthProvider({ children }) {
     currentUser,
     login,
     logout,
-    signup // ✅ ya está disponible en useAuth()
+    signup,
   };
 
   return (

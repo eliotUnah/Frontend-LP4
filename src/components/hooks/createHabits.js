@@ -11,7 +11,7 @@ export function useHabitForm() {
 
   const onSubmit = async (data) => {
     const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJmQ0d2TUFicHEwYUdpaGVPakFjWjlJSjFoSjQzIiwiZW1haWwiOiJlbGlvdHVuYWhAZ21haWwuY29tIiwiaWF0IjoxNzUxOTEwNTM2LCJleHAiOjE3NTI1MTUzMzZ9.HG8dTe3t3AlTFyCMIGwkVpu0ZLbVcmsoSvAox0pAYXI';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJQU3RJYVlON3liVTdwcG5LeFBFajZsRFYxc0MzIiwiZW1haWwiOiJlbGlvdHVuYWgyNEBnbWFpbC5jb20iLCJpYXQiOjE3NTI1MjA0OTIsImV4cCI6MTc1MzEyNTI5Mn0.T8IbPpymuybIinX2OZTDcYF39AD0sgCQX-jaP6ScJ3g';
 
     try {
       const response = await axios.post('http://localhost:5000/crear-habito', data, {

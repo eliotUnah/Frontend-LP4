@@ -4,10 +4,13 @@ import useHabits from '../hooks/getHabits.js';
 import { useDeleteHabit } from '../hooks/deleteHabits.js';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
+import { useAuth } from '../../contexts/AuthContext';
 import '../styles/Dashboard.css';
    
 const HabitsPage = () => {
+    //
+  const { logout } = useAuth();
+  
   const { habits, loading, error } = useHabits();
   // Borrar el hábito
  const { deleteHabit, loading: deleting, error: deleteError, success } = useDeleteHabit();
@@ -129,7 +132,24 @@ while (visibleHabits.length < habitsPerPage) {
           <div className="dashboard__menu-icon">📊</div>
           <div className="dashboard__menu-text">Mi progreso</div>
         </div>
-        <div className="dashboard__menu-item">
+        <div
+          className="dashboard__menu-item"
+          style={{ cursor: 'pointer' }}
+          onClick={async () => {
+            try {
+              await logout();
+              navigate('/login');
+            } catch (error) {
+              console.error('❌ Error al cerrar sesión:', error);
+              Swal.fire({
+                title: 'Error',
+                text: 'Hubo un problema al cerrar sesión.',
+                icon: 'error',
+                confirmButtonColor: '#d63031',
+              });
+            }
+          }}
+        >
           <div className="dashboard__menu-icon">🚪</div>
           <div className="dashboard__menu-text">Cerrar Sesión</div>
         </div>
