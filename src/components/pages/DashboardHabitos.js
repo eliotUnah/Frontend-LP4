@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import useHabits from '../hooks/getHabits.js';
 import { useDeleteHabit } from '../hooks/deleteHabits.js';
+import useCreateCheckin  from '../hooks/checkinHabits.js';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -9,6 +10,27 @@ import '../styles/Dashboard.css';
    
 const HabitsPage = () => {
   const { habits, loading, error } = useHabits();
+  //  crear check-ins
+const { createCheckin, loading: checkinLoading, error: checkinError, success: checkinSuccess } = useCreateCheckin();
+const handleCheckinHabit = async (habitId) => {
+  const resultado = await createCheckin(habitId);
+
+  if (resultado) {
+    Swal.fire({
+      title: '✅ Check-in hecho',
+      text: `Racha actual: ${resultado.streakCurrent}, Mejor racha: ${resultado.streakBest}`,
+      icon: 'success',
+      confirmButtonColor: '#00b894',
+    });
+  } else if (checkinError) {
+    Swal.fire({
+      title: '❌',
+      text: checkinError,
+      icon: 'error',
+      confirmButtonColor: '#d63031',
+    });
+  }
+};
   // Borrar el hábito
  const { deleteHabit, loading: deleting, error: deleteError, success } = useDeleteHabit();
  //Navegador de componentes
@@ -105,11 +127,13 @@ while (visibleHabits.length < habitsPerPage) {
           <div className="dashboard__menu-icon">🆕</div>
           <div className="dashboard__menu-text">Crear nuevo hábito</div>
         </div>
-        <div className="dashboard__menu-item">
+        <div className="dashboard__menu-item" onClick={() => navigate('/buscar-habito')}
+          style={{ cursor: 'pointer' }}>
           <div className="dashboard__menu-icon">🔍</div>
           <div className="dashboard__menu-text">Buscar hábito</div>
         </div>
-        <div className="dashboard__menu-item">
+        <div className="dashboard__menu-item" onClick={() => navigate('/recordatorios')}
+          style={{ cursor: 'pointer' }}>
           <div className="dashboard__menu-icon">⏰</div>
           <div className="dashboard__menu-text">Crear recordatorio</div>
         </div>
@@ -157,7 +181,8 @@ while (visibleHabits.length < habitsPerPage) {
           <h3 className="dashboard__habit_title">{habit.title}</h3>
         </div>
         <div className="dashboard__card-buttons">
-          <button className="dashboard__checkin-button">
+          <button className="dashboard__checkin-button"  onClick={() => handleCheckinHabit(habit._id)}
+           disabled={checkinLoading}>
             <svg className="dashboard__checkin-svgIcon" viewBox="0 0 512 512">
               <path d="M504.5 75.5l-297 297c-8.5 8.5-22.4 8.5-30.9 0l-168-168c-8.5-8.5-8.5-22.4 0-30.9s22.4-8.5 30.9 0L192 320.6 473.6 39c8.5-8.5 22.4-8.5 30.9 0s8.5 22.4 0 30.9z" />
             </svg>
