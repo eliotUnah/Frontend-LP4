@@ -11,23 +11,28 @@ import Register from './components/pages/Register';
 import LandingPage from './components/pages/LandingPage';
 import ResetPassword from './components/pages/actualizarContra';
 import { AuthProvider } from './contexts/AuthContext'; 
+import PrivateRoute from './PrivateRoutes';
 function App() {
   return (
     <Router>
         <AuthProvider>
       <Routes>
-        <Route path="/crear-habito" element={<CrearHabito />} /> {/* ✅ actualizado */}
-        <Route path="/dasboard-habitos" element={<HabitsPage />} /> {/* ✅ actualizado */}
-        <Route path="/editar-habito/:habitId" element={<EditHabitos />} />
-        <Route path="/buscar-habito" element={<SearchHabitsPage />} />
-        <Route path="/recordatorios" element={<ReminderPage />} />
-        <Route path="/" element={<Navigate to="/landing" />} />
-        <Route path="/landing" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/updateContra" element={<ResetPassword />} />
-      </Routes>
-        </AuthProvider>
+          {/* Rutas públicas */}
+          <Route path="/" element={<Navigate to="/landing" />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/updateContra" element={<ResetPassword />} />
+          {/* Rutas protegidas dentro del wrapper PrivateRoute */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/crear-habito" element={<CrearHabito />} />
+            <Route path="/dasboard-habitos" element={<HabitsPage />} />
+            <Route path="/editar-habito/:habitId" element={<EditHabitos />} />
+            <Route path="/buscar-habito" element={<SearchHabitsPage />} />
+            <Route path="/recordatorios" element={<ReminderPage />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }

@@ -153,7 +153,8 @@ while (visibleHabits.length < habitsPerPage) {
           <div className="dashboard__menu-icon">📊</div>
           <div className="dashboard__menu-text">Mi progreso</div>
         </div>
-        <div className="dashboard__menu-item">
+        <div className="dashboard__menu-item"  onClick={() => navigate('/login')}
+          style={{ cursor: 'pointer' }}>  
           <div className="dashboard__menu-icon">🚪</div>
           <div className="dashboard__menu-text">Cerrar Sesión</div>
         </div>
