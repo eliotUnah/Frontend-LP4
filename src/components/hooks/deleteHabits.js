@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import api from '../../utils/axiosConfig';
 
 export const useDeleteHabit = () => {
   const [loading, setLoading] = useState(false);
@@ -11,14 +12,9 @@ export const useDeleteHabit = () => {
     setError(null);
     setSuccess(false);
 
-     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJQU3RJYVlON3liVTdwcG5LeFBFajZsRFYxc0MzIiwiZW1haWwiOiJlbGlvdHVuYWgyNEBnbWFpbC5jb20iLCJpYXQiOjE3NTI1MjA0OTIsImV4cCI6MTc1MzEyNTI5Mn0.T8IbPpymuybIinX2OZTDcYF39AD0sgCQX-jaP6ScJ3g';
     try {
-      const response = await axios.delete('http://localhost:5000/eliminar-habito', {
-        data: { habitId }, // 👈 Axios usa "data" para el cuerpo del DELETE
-        headers: {
-          'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`, // si usas autenticación
-        },
+      const response = await api.delete('/eliminar-habito', {
+        data: { habitId } // ✅ Así se manda el body con DELETE
       });
 
       setSuccess(true);

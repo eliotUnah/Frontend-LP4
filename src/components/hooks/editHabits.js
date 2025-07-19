@@ -1,6 +1,7 @@
 // src/hooks/useUpdateHabit.js
 import { useState } from 'react';
 import axios from 'axios';
+import api from '../../utils/axiosConfig';
 
 const useUpdateHabit = () => {
   const [loading, setLoading] = useState(false);
@@ -13,14 +14,7 @@ const useUpdateHabit = () => {
     setError('');
 
     try {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJQU3RJYVlON3liVTdwcG5LeFBFajZsRFYxc0MzIiwiZW1haWwiOiJlbGlvdHVuYWgyNEBnbWFpbC5jb20iLCJpYXQiOjE3NTI1MjA0OTIsImV4cCI6MTc1MzEyNTI5Mn0.T8IbPpymuybIinX2OZTDcYF39AD0sgCQX-jaP6ScJ3g';
-
-      const res = await axios.put('http://localhost:5000/actualizar-habito', habitData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
+       const res = await api.put('/actualizar-habito', habitData);
 
       setResponse(res.data);
        return res.data;

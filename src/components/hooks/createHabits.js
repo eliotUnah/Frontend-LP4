@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import api from '../../utils/axiosConfig';
 
 export function useHabitForm() {
   const {
@@ -10,16 +11,9 @@ export function useHabitForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJQU3RJYVlON3liVTdwcG5LeFBFajZsRFYxc0MzIiwiZW1haWwiOiJlbGlvdHVuYWgyNEBnbWFpbC5jb20iLCJpYXQiOjE3NTI1MjA0OTIsImV4cCI6MTc1MzEyNTI5Mn0.T8IbPpymuybIinX2OZTDcYF39AD0sgCQX-jaP6ScJ3g';
 
     try {
-      const response = await axios.post('http://localhost:5000/crear-habito', data, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
+      const response = await api.post('/crear-habito', data); // ← sin Authorization, solo cookies
       reset();
       return {
         success: true,
