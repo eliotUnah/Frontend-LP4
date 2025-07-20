@@ -6,8 +6,8 @@ import useCreateCheckin  from '../hooks/checkinHabits.js';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
+
 import '../styles/Dashboard.css';
-   
 const HabitsPage = () => {
   const { habits, loading, error } = useHabits();
   //  crear check-ins
@@ -18,7 +18,7 @@ const handleCheckinHabit = async (habitId) => {
   if (resultado) {
     Swal.fire({
       title: '✅ Check-in hecho',
-      text: `Racha actual: ${resultado.streakCurrent}, Mejor racha: ${resultado.streakBest}`,
+      text: `Racha actual🗓️: ${resultado.streakCurrent}, Mejor racha🔥: ${resultado.streakBest}`,
       icon: 'success',
       confirmButtonColor: '#00b894',
     });
@@ -137,10 +137,14 @@ while (visibleHabits.length < habitsPerPage) {
           <div className="dashboard__menu-icon">⏰</div>
           <div className="dashboard__menu-text">Crear recordatorio</div>
         </div>
-        <div className="dashboard__menu-item">
-          <div className="dashboard__menu-icon">🏅</div>
-          <div className="dashboard__menu-text">Ver medallas</div>
-        </div>
+           <div
+    className="dashboard__menu-item"
+    onClick={() => navigate('/Medallas')}
+    style={{ cursor: 'pointer' }}
+  >
+    <div className="dashboard__menu-icon">🏅</div>
+    <div className="dashboard__menu-text">Ver medallas</div>
+  </div>
         <div className="dashboard__menu-item">
           <div className="dashboard__menu-icon">🛡️</div>
           <div className="dashboard__menu-text">Insignias</div>

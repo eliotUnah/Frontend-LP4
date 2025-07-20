@@ -518,3 +518,131 @@
   font-size: 0.9rem;
   color: #888;
 }
+/* --- Contenedor Principal de Medallas (Dashboard.css) --- */
+/* Esta clase debería ser única para la sección de medallas si no lo es ya */
+/* Si este contenedor 'dashboard__logros-container' se usa solo en Medallas.jsx,
+   sus estilos no afectarán a otros apartados. */
+.dashboard__logros-container {
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Título ESPECÍFICO de la sección de Medallas */
+/* Si este título está DENTRO de '.dashboard__logros-container', esta regla es más segura */
+.dashboard__logros-container .dashboard__slider-title {
+  text-align: center;
+  color: #000000; /* Color específico para el título de esta sección: AZUL */
+  margin-bottom: 25px; /* Espacio debajo del título */
+  font-size: 2em; /* Tamaño del título para las medallas */
+}
+
+
+/* Contenedor de la cuadrícula de tarjetas de logro */
+.dashboard__logros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo, mínimo 280px */
+  gap: 25px; /* Espacio entre las tarjetas */
+  margin-top: 1rem;
+  justify-content: center; /* Centra las tarjetas en el espacio disponible */
+}
+
+/* Estilos para cada tarjeta de logro individual */
+.dashboard__logro-card {
+  text-align: left; /* Alineación del texto dentro de la tarjeta */
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.dashboard__logro-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Título del HÁBITO dentro de CADA TARJETA de logro */
+.dashboard__logro-card h3 {
+  margin-top: 0;
+  color: #333; /* Color del título del hábito (Ej: "Hacer Ejercicio") dentro de la tarjeta: NEGRO/GRIS OSCURO */
+  font-size: 1.4em; /* Tamaño del título del hábito dentro de la tarjeta */
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.dashboard__logro-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* --- Animaciones Keyframes (Se mantienen igual) --- */
+
+@keyframes popInBounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes subtlePulse {
+  0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+  50% { text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.4); }
+  100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+}
+
+/* --- Estilos ESPECÍFICOS para los elementos de Logro (<li>) dentro de una tarjeta --- */
+/* Estos estilos son para el item de la lista (ej. "PerfectWeek - 19/7/2025") */
+.dashboard__logro-card .animated-achievement-item {
+  display: flex;
+  align-items: center; /* Centra el emoji y el texto verticalmente */
+  padding: 10px 0; /* Espacio vertical para cada elemento de logro */
+  border-bottom: 1px solid #eee; /* Separador entre logros */
+  opacity: 0; /* Inicialmente invisible para la animación */
+  animation: popInBounce 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  
+  /* Estilo del texto del logro (el "PerfectWeek — 19/7/2025") */
+  font-size: 1.1em; /* Tamaño de fuente para este texto específico */
+  color: #555; /* Color de fuente para este texto específico: GRIS OSCURO */
+}
+
+.dashboard__logro-card .animated-achievement-item:last-child {
+  border-bottom: none; /* Sin borde inferior en el último elemento de la lista de logros */
+}
+
+/* --- Estilos ESPECÍFICOS para el Emoji de la Medalla (<span>) --- */
+/* Este es para el emoji en sí */
+.dashboard__logro-card .animated-medal-emoji {
+  font-size: 3.5em; /* Tamaño grande para el emoji (ajusta si es necesario) */
+  margin-right: 15px; /* Espacio a la derecha del emoji */
+  display: inline-block; /* Crucial para aplicar transformaciones y sombras de texto */
+  min-width: 60px; /* Asegura un ancho mínimo para la alineación visual */
+  text-align: center; /* Centra el emoji dentro de su min-width */
+  line-height: 1; /* Ayuda a la alineación vertical del emoji */
+
+  /* Animación de pulso continuo (comienza después del popInBounce del padre) */
+  animation: subtlePulse 2s ease-in-out infinite 0.7s;
+}
+
+/* --- REVISA ESTAS REGLAS ORIGINALES (si aún existen en tu CSS) --- */
+/* Las siguientes reglas que tenías son genéricas y podrían estar causando conflictos.
+   Si las tienes, puedes ELIMINARLAS o ASEGURARTE de que no afecten tus títulos principales. */
+/*
+.dashboard__logro-img {
+  width: 64px;
+  height: 64px;
+}
+
+.dashboard__logro-text {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.dashboard__logro-date {
+  font-size: 0.8rem;
+  color: #777;
+}
+*/

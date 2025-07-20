@@ -12,6 +12,7 @@ import LandingPage from './components/pages/LandingPage';
 import ResetPassword from './components/pages/actualizarContra';
 import { AuthProvider } from './contexts/AuthContext'; 
 import PrivateRoute from './PrivateRoutes';
+import Medallas from './components/pages/Medallas';
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
             <Route path="/editar-habito/:habitId" element={<EditHabitos />} />
             <Route path="/buscar-habito" element={<SearchHabitsPage />} />
             <Route path="/recordatorios" element={<ReminderPage />} />
+            <Route path="/Medallas" element={<Medallas />} />
           </Route>
         </Routes>
       </AuthProvider>
