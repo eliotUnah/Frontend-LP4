@@ -1,5 +1,5 @@
 .bg-indigo-50 {
-  background-color: var(--indigo-50);
+  background: linear-gradient(120deg, #f3e8ff, #e0e7ff);
 }
 
 .testimonial-container {

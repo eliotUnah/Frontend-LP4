@@ -12,6 +12,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './PrivateRoute';
 import SearchHabitsPage from './components/pages/SearchHabito'; // ✅ nuevo componente visual con lógica
 import  ReminderPage  from './components/pages/ReminderPage'; 
+import DashboardOverview from './components/pages/DashboardOverview';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/editar-habito/:habitId" element={<EditHabitos />} />
             <Route path="/buscar-habito" element={<SearchHabitsPage />} />
             <Route path="/recordatorios" element={<ReminderPage />} />
+            <Route path="/progreso" element={<DashboardOverview />} />
           </Route>
         </Routes>
       </AuthProvider>

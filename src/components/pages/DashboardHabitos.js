@@ -5,12 +5,14 @@ import { useDeleteHabit } from '../hooks/deleteHabits.js';
 import useCreateCheckin  from '../hooks/checkinHabits.js';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useAuth } from '../../contexts/AuthContext';
 
 import '../styles/Dashboard.css';
    
 const HabitsPage = () => {
   const { habits, loading, error } = useHabits();
   //  crear check-ins
+  const { logout } = useAuth();//ES NECESARIO PARA CERRAR LA SESION Y LIMPIAR COKIEE
 const { createCheckin, loading: checkinLoading, error: checkinError, success: checkinSuccess } = useCreateCheckin();
 const handleCheckinHabit = async (habitId) => {
   const resultado = await createCheckin(habitId);
@@ -149,12 +151,31 @@ while (visibleHabits.length < habitsPerPage) {
           <div className="dashboard__menu-icon">📅</div>
           <div className="dashboard__menu-text">Calendario</div>
         </div>
-        <div className="dashboard__menu-item">
+        <div
+  className="dashboard__menu-item"
+  onClick={() => navigate('/progreso')}
+  style={{ cursor: 'pointer' }}>
           <div className="dashboard__menu-icon">📊</div>
           <div className="dashboard__menu-text">Mi progreso</div>
         </div>
-        <div className="dashboard__menu-item"  onClick={() => navigate('/login')}
-          style={{ cursor: 'pointer' }}>  
+      <div
+    className="dashboard__menu-item"
+    style={{ cursor: 'pointer' }}
+    onClick={async () => {
+      try {
+        await logout();
+        navigate('/login');
+      } catch (error) {
+        console.error('❌ Error al cerrar sesión:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un problema al cerrar sesión.',
+          icon: 'error',
+          confirmButtonColor: '#d63031',
+        });
+      }
+    }}
+  >
           <div className="dashboard__menu-icon">🚪</div>
           <div className="dashboard__menu-text">Cerrar Sesión</div>
         </div>

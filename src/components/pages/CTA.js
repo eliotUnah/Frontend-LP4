@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import '../styles/CTA.css';
+import { useNavigate } from 'react-router-dom';
 
 const CTA = () => {
+  const navigate = useNavigate();
   return (
     <section className="section bg-gradient">
       <div className="container">
@@ -31,6 +33,7 @@ const CTA = () => {
           >
             <motion.button
               className="cta-button"
+              onClick={() => navigate('/register')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >

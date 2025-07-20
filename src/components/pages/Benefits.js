@@ -25,7 +25,7 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="beneficios" className="section bg-white">
+    <section id="beneficios" className="section bg-gray">
       <div className="container">
         <motion.div
           className="section-header"
@@ -51,11 +51,13 @@ const Benefits = () => {
               viewport={{ once: true }}
             >
               <div className={`benefit-card ${benefit.color}`}>
-                <div className="benefit-icon-container">
-                  {benefit.icon}
+                <div className="benefit-inner">
+                  <div className="benefit-icon-container">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="benefit-title">{benefit.title}</h3>
+                  <p className="benefit-description">{benefit.description}</p>
                 </div>
-                <h3 className="benefit-title">{benefit.title}</h3>
-                <p className="benefit-description">{benefit.description}</p>
               </div>
             </motion.div>
           ))}
