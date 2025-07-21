@@ -7,9 +7,16 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../contexts/AuthContext';
 
+import DailySuggestionCard from '../pages/DailySuggestionCard.js';
+
+
+
+
 import '../styles/Dashboard.css';
    
 const HabitsPage = () => {
+
+
   const { habits, loading, error } = useHabits();
   //  crear check-ins
   const { logout } = useAuth();//ES NECESARIO PARA CERRAR LA SESION Y LIMPIAR COKIEE
@@ -139,7 +146,8 @@ while (visibleHabits.length < habitsPerPage) {
           <div className="dashboard__menu-icon">⏰</div>
           <div className="dashboard__menu-text">Crear recordatorio</div>
         </div>
-        <div className="dashboard__menu-item">
+        <div className="dashboard__menu-item"  onClick={() => navigate('/Medallas')}
+  style={{ cursor: 'pointer' }}>
           <div className="dashboard__menu-icon">🏅</div>
           <div className="dashboard__menu-text">Ver medallas</div>
         </div>
@@ -188,6 +196,9 @@ while (visibleHabits.length < habitsPerPage) {
 </h1>
     <p className="dashboard__subtitle">El cambio empieza aquí, uno por uno</p>
   </div>
+
+ <DailySuggestionCard />
+
 {/* Mostrar los contenedores con habitos  */}
   <div className="dashboard__slider-container">
    <h2 className="dashboard__slider-title slider-title__fade-in">Tus Hábitos</h2>
