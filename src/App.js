@@ -14,6 +14,7 @@ import SearchHabitsPage from './components/pages/SearchHabito'; // ✅ nuevo com
 import  ReminderPage  from './components/pages/ReminderPage'; 
 import DashboardOverview from './components/pages/DashboardOverview';
 import Medallas from './components/pages/Medallas';
+import SuggestionsHistory from "./components/pages/SuggestionsHistory";
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
             <Route path="/buscar-habito" element={<SearchHabitsPage />} />
             <Route path="/recordatorios" element={<ReminderPage />} />
             <Route path="/progreso" element={<DashboardOverview />} />
-            <Route path="/Medallas" element={<Medallas />} />
+            <Route path="/Medallas" element={<Medallas />} />     
+            <Route path="/historial-sugerencias" element={<SuggestionsHistory />} />
           </Route>
         </Routes>
       </AuthProvider>
