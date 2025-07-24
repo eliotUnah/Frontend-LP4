@@ -6,17 +6,11 @@ import useCreateCheckin  from '../hooks/checkinHabits.js';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../contexts/AuthContext';
-
 import DailySuggestionCard from '../pages/DailySuggestionCard.js';
-
-
-
-
+import { Link } from 'react-router-dom';
 import '../styles/Dashboard.css';
    
 const HabitsPage = () => {
-
-
   const { habits, loading, error } = useHabits();
   //  crear check-ins
   const { logout } = useAuth();//ES NECESARIO PARA CERRAR LA SESION Y LIMPIAR COKIEE
@@ -155,10 +149,10 @@ while (visibleHabits.length < habitsPerPage) {
           <div className="dashboard__menu-icon">🛡️</div>
           <div className="dashboard__menu-text">Insignias</div>
         </div>
-        <div className="dashboard__menu-item">
+         <Link to="/calendario" className="dashboard__menu-item">
           <div className="dashboard__menu-icon">📅</div>
-          <div className="dashboard__menu-text">Calendario</div>
-        </div>
+        <div className="dashboard__menu-text">Calendario</div>
+          </Link> 
         <div
   className="dashboard__menu-item"
   onClick={() => navigate('/progreso')}

@@ -1,6 +1,4 @@
-// src/hooks/useUpdateHabit.js
 import { useState } from 'react';
-import axios from 'axios';
 import api from '../../utils/axiosConfig';
 
 const useUpdateHabit = () => {
@@ -14,10 +12,16 @@ const useUpdateHabit = () => {
     setError('');
 
     try {
-       const res = await api.put('/actualizar-habito', habitData);
+      // Asegura que startTime esté en formato ISO si es Date
+      const payload = {
+        ...habitData,
+        startTime: habitData.startTime ? new Date(habitData.startTime).toISOString() : undefined,
+        durationMinutes: habitData.durationMinutes ? parseInt(habitData.durationMinutes) : undefined
+      };
 
+      const res = await api.put('/actualizar-habito', payload);
       setResponse(res.data);
-       return res.data;
+      return res.data;
     } catch (err) {
       console.error('❌ Error actualizando hábito:', err);
       setError(err.response?.data?.message || 'Error desconocido al actualizar');
@@ -29,4 +33,4 @@ const useUpdateHabit = () => {
   return { updateHabit, loading, response, error };
 };
 
-export default useUpdateHabit;
+export default useUpdateHabit; 

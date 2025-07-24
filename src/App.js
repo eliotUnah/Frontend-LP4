@@ -15,6 +15,7 @@ import  ReminderPage  from './components/pages/ReminderPage';
 import DashboardOverview from './components/pages/DashboardOverview';
 import Medallas from './components/pages/Medallas';
 import SuggestionsHistory from "./components/pages/SuggestionsHistory";
+import  GoogleLinkPage from './components/pages/CalendarioHabitos';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/progreso" element={<DashboardOverview />} />
             <Route path="/Medallas" element={<Medallas />} />     
             <Route path="/historial-sugerencias" element={<SuggestionsHistory />} />
+            <Route path="/calendario" element={<GoogleLinkPage/>} />
           </Route>
         </Routes>
       </AuthProvider>
