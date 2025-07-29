@@ -2,6 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import { useGoogleAuth, useGoogleStatus } from '../hooks/calendarHabits';
 import { useSyncHabits, useTestEvent } from '../hooks/CalendarSync';
+import { motion } from 'framer-motion';
 
 const GoogleLinkPage = () => {
   const { startAuth } = useGoogleAuth();
@@ -44,44 +45,114 @@ const GoogleLinkPage = () => {
   };
 
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Conectar con Google Calendar 🗓️</h1>
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      style={{
+        maxWidth: 420,
+        margin: '4rem auto',
+        padding: '2.5rem 2rem',
+        textAlign: 'center',
+        borderRadius: 24,
+        background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)',
+        boxShadow: '0 20px 40px rgba(139,92,246,.35)',
+        color: '#fff',
+        fontFamily: 'system-ui, sans-serif',
+      }}
+    >
+      <motion.h1
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+        style={{ fontSize: '1.75rem', marginBottom: '1.5rem', fontWeight: 700 }}
+      >
+        Conectar con Google Calendar 🗓️
+      </motion.h1>
 
       {loading ? (
-        <p>⏳ Verificando estado de vinculación...</p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ repeat: Infinity, repeatType: 'reverse', duration: 0.8 }}
+          style={{ fontSize: '1.1rem' }}
+        >
+          ⏳ Verificando estado de vinculación...
+        </motion.p>
       ) : isLinked ? (
-        <>
-          <p style={{ color: 'green', fontWeight: 'bold', marginTop: '1rem' }}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <p style={{ fontWeight: 600, marginBottom: '1.25rem' }}>
             ✅ Tu cuenta ya está vinculada con Google Calendar
           </p>
-          <button onClick={handleSync} disabled={syncing} style={buttonStyle}>
-            📆 Sincronizar hábitos
-          </button>
-          <button onClick={handleTestEvent} disabled={creating} style={{ ...buttonStyle, marginLeft: '1rem' }}>
-            🎯 Crear evento de prueba
-          </button>
-        </>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleSync}
+              disabled={syncing}
+              style={purpleBtn}
+            >
+              📆 {syncing ? 'Sincronizando...' : 'Sincronizar hábitos'}
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleTestEvent}
+              disabled={creating}
+              style={outlineBtn}
+            >
+              🎯 {creating ? 'Creando...' : 'Evento de prueba'}
+            </motion.button>
+          </div>
+        </motion.div>
       ) : (
-        <>
-          <p>Haz clic en el botón para iniciar el proceso de vinculación.</p>
-          <button onClick={handleClick} style={buttonStyle}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <p style={{ marginBottom: '1.25rem', fontSize: '1.1rem' }}>
+            Haz clic en el botón para iniciar el proceso de vinculación.
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleClick}
+            style={purpleBtn}
+          >
             🔗 Vincular con Google
-          </button>
-        </>
+          </motion.button>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
-};
+}
 
-const buttonStyle = {
-  padding: '1rem 2rem',
-  fontSize: '1.2rem',
-  backgroundColor: '#4285F4',
-  color: '#fff',
+const purpleBtn = {
+  padding: '0.9rem 2rem',
+  fontSize: '1.1rem',
+  fontWeight: 600,
+  backgroundColor: '#fff',
+  color: '#7c3aed',
   border: 'none',
-  borderRadius: '8px',
+  borderRadius: 12,
   cursor: 'pointer',
-  marginTop: '1rem',
+  boxShadow: '0 4px 15px rgba(0,0,0,.15)',
 };
 
-export default GoogleLinkPage;
+const outlineBtn = {
+  padding: '0.9rem 2rem',
+  fontSize: '1.1rem',
+  fontWeight: 600,
+  backgroundColor: 'transparent',
+  color: '#fff',
+  border: '2px solid #fff',
+  borderRadius: 12,
+  cursor: 'pointer',
+};
+
+export default GoogleLinkPage; 

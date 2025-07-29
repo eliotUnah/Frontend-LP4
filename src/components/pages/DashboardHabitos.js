@@ -115,75 +115,113 @@ while (visibleHabits.length < habitsPerPage) {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-  <div className="dashboard__container">
-    {/* 🧱 Sidebar del Dashboard con perfil de usuario y menú de navegación */}
-    <div className="dashboard__sidebar">
+ <div> 
+  <div className="body__dashboard">
+  <div className="dashboard__container dashboard__sidebar--subtle">
+    {/* Sidebar del Dashboard con perfil de usuario y menú de navegación */}
+    <div className="dashboard__sidebar"> 
       <div className="dashboard__profile">
-        <div className="dashboard__profile-img">E</div>
+        <div className="dashboard__profile-img">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="currentColor"/>
+          </svg>
+        </div>
         <div className="dashboard__profile-name">Eliot</div>
         <div className="dashboard__profile-text">Usuario Premium</div>
       </div>
+      
       <div className="dashboard__menu-items">
-        <div className="dashboard__menu-item" onClick={() => navigate('/crear-habito')}
-        style={{ cursor: 'pointer' }}>
-          <div className="dashboard__menu-icon">🆕</div>
+        <div className="dashboard__menu-item" onClick={() => navigate('/crear-habito')} style={{ cursor: 'pointer' }}>
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           <div className="dashboard__menu-text">Crear nuevo hábito</div>
         </div>
-        <div className="dashboard__menu-item" onClick={() => navigate('/buscar-habito')}
-          style={{ cursor: 'pointer' }}>
-          <div className="dashboard__menu-icon">🔍</div>
+
+        <div className="dashboard__menu-item" onClick={() => navigate('/buscar-habito')} style={{ cursor: 'pointer' }}>
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           <div className="dashboard__menu-text">Buscar hábito</div>
         </div>
-        <div className="dashboard__menu-item" onClick={() => navigate('/recordatorios')}
-          style={{ cursor: 'pointer' }}>
-          <div className="dashboard__menu-icon">⏰</div>
+
+        <div className="dashboard__menu-item" onClick={() => navigate('/recordatorios')} style={{ cursor: 'pointer' }}>
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 7V3M8 7H16M8 7H5M16 7V3M16 7H19M8 15H5M8 15V17M16 15H19M16 15V17M5 11H19V17C19 18.1046 18.1046 19 17 19H7C5.89543 19 5 18.1046 5 17V11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           <div className="dashboard__menu-text">Crear recordatorio</div>
         </div>
-        <div className="dashboard__menu-item"  onClick={() => navigate('/Medallas')}
-  style={{ cursor: 'pointer' }}>
-          <div className="dashboard__menu-icon">🏅</div>
+
+        <div className="dashboard__menu-item" onClick={() => navigate('/Medallas')} style={{ cursor: 'pointer' }}>
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8.21 13.89L7 23L12 20L17 23L15.79 13.88" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           <div className="dashboard__menu-text">Ver medallas</div>
         </div>
-        <div className="dashboard__menu-item">
-          <div className="dashboard__menu-icon">🛡️</div>
+
+        <div className="dashboard__menu-item" style={{ cursor: 'pointer' }}>
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 15V3M12 15L8 11M12 15L16 11M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           <div className="dashboard__menu-text">Insignias</div>
         </div>
-         <Link to="/calendario" className="dashboard__menu-item">
-          <div className="dashboard__menu-icon">📅</div>
-        <div className="dashboard__menu-text">Calendario</div>
-          </Link> 
-        <div
-  className="dashboard__menu-item"
-  onClick={() => navigate('/progreso')}
-  style={{ cursor: 'pointer' }}>
-          <div className="dashboard__menu-icon">📊</div>
+
+        <Link to="/calendario" className="dashboard__menu-item">
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 2V6M16 2V6M3 10H21M5 4H19C20.1046 4 21 4.89543 21 6V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V6C3 4.89543 3.89543 4 5 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="dashboard__menu-text">Calendario</div>
+        </Link>
+
+        <div className="dashboard__menu-item" onClick={() => navigate('/progreso')} style={{ cursor: 'pointer' }}>
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 20V10M12 20V4M6 20V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           <div className="dashboard__menu-text">Mi progreso</div>
         </div>
-      <div
-    className="dashboard__menu-item"
-    style={{ cursor: 'pointer' }}
-    onClick={async () => {
-      try {
-        await logout();
-        navigate('/login');
-      } catch (error) {
-        console.error('❌ Error al cerrar sesión:', error);
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un problema al cerrar sesión.',
-          icon: 'error',
-          confirmButtonColor: '#d63031',
-        });
-      }
-    }}
-  >
-          <div className="dashboard__menu-icon">🚪</div>
+
+        <div className="dashboard__menu-item" style={{ cursor: 'pointer' }} onClick={async () => {
+          try {
+            await logout();
+            navigate('/login');
+          } catch (error) {
+            console.error('❌ Error al cerrar sesión:', error);
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un problema al cerrar sesión.',
+              icon: 'error',
+              confirmButtonColor: '#d63031',
+            });
+          }
+        }}>
+          <div className="dashboard__menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M16 17L21 12L16 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M21 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           <div className="dashboard__menu-text">Cerrar Sesión</div>
         </div>
       </div>
     </div>
     </div>
+    {/* Contenido principal del Dashboard */}
 <div className="dashboard__main-content">
   <div className="dashboard__header">
     <h1 className="dashboard__title">Bienvenido, tu mejor versión empieza aquí.
@@ -276,6 +314,7 @@ while (visibleHabits.length < habitsPerPage) {
   </div>
 </div>
 </div>
+  </div>
   );
   };
 export default HabitsPage;
