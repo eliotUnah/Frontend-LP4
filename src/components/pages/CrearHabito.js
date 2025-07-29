@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import useHabitForm from '../hooks/createHabits.js';
 import '../styles/CrearHabito.css';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 
 function CrearHabito() {
   const navigate = useNavigate();
   const [charCount, setCharCount] = useState(0);
+  const location = useLocation();
+  const suggestion = location.state?.suggestion;
   const {
     register,
     handleSubmit,
@@ -16,7 +18,18 @@ function CrearHabito() {
     errors,
     watch
   } = useHabitForm();
-
+useEffect(() => {
+  if (suggestion?.title) {
+    reset({
+      title: suggestion.title,
+      category: suggestion.category,
+      reason: suggestion.reason,
+      frequency: suggestion.frequency,
+      level: suggestion.level
+    });
+    setCharCount(suggestion.title.length);
+  }
+}, [suggestion]);
   const frequency = watch("frequency"); // Para mostrar días según frecuencia
 
   const onSubmit = async (data) => {
