@@ -15,7 +15,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 
-.body__dashboard {
+.dashboard {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -23,7 +23,7 @@
   background: linear-gradient(
     -45deg,
     #f3e5f5 0%,
-    #e1bee7 15%,
+    #e598f3 15%,
     #d1c4e9 30%,
     #c5cae9 45%,
     #d1c4e9 60%,

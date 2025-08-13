@@ -7,28 +7,28 @@ const useHabits = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchHabits = async () => {
-      try {
-       const response = await api.get('/buscar-habito'); // ✅ Cookies incluidas automáticamente
-
-        console.log('Hábitos recibidos:', response.data); // 👈 Verifica la estructura
-        setHabits(response.data); // ✅ Guarda los objetos completos
-      } catch (err) {
-        if (err.response?.status === 404) {
-          setError('No se encontraron hábitos.');
-        } else {
-          setError('Error al cargar los hábitos.');
-        }
-      } finally {
-        setLoading(false);
+  const fetchHabits = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get('/buscar-habito');
+      console.log('Hábitos recibidos:', response.data);
+      setHabits(response.data);
+      setError('');
+    } catch (err) {
+      if (err.response?.status === 404) {
+        setError('No se encontraron hábitos.');
+      } else {
+        setError('Error al cargar los hábitos.');
       }
-    };
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchHabits();
   }, []);
 
-  return { habits, loading, error };
+  return { habits, loading, error, refetch: fetchHabits };
 };
-
-export default useHabits;
+export default useHabits; 

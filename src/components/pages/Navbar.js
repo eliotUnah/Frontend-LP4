@@ -1,14 +1,18 @@
-// src/components/Navbar.js
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 
+
+import useLandingData from '../hooks/useLandigData'; // ✅ mismo hook que HeroSection
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+
+  const { data, loading, error } = useLandingData();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -16,7 +20,11 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['beneficios', 'testimonios', 'ayuda', 'contacto'];
+  if (loading) return null; // evita parpadeo
+  if (error) return <p>Error: {error}</p>;
+  if (!data || !data.navbar) return null;
+
+  const { logo, navItems, botonTexto } = data.navbar;
 
   return (
     <motion.nav
@@ -35,7 +43,7 @@ const Navbar = () => {
             >
               <Check className="icon" />
             </motion.div>
-            <span className="logo-text">HábitoPro</span>
+            <span className="logo-text">{logo}</span>
           </motion.div>
 
           <div className="desktop-menu">
@@ -55,7 +63,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/login')}
             >
-              <User className="icon" /> Login
+              <User className="icon" /> {botonTexto}
             </motion.button>
           </div>
 
@@ -95,7 +103,7 @@ const Navbar = () => {
                     navigate('/login');
                   }}
                 >
-                  <User className="icon" /> Login
+                  <User className="icon" /> {botonTexto}
                 </button>
               </div>
             </motion.div>

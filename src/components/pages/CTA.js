@@ -2,9 +2,16 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import '../styles/CTA.css';
 import { useNavigate } from 'react-router-dom';
+import useLandingData from '../hooks/useLandigData';
 
 const CTA = () => {
   const navigate = useNavigate();
+  const { data, loading, error } = useLandingData();
+
+  if (loading) return <p>Cargando...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!data || !data.cta) return null;
+
   return (
     <section className="section bg-gradient">
       <div className="container">
@@ -15,7 +22,7 @@ const CTA = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="cta-title">¿Listo para transformar tus hábitos?</h2>
+          <h2 className="cta-title">{data.cta.titulo}</h2>
           <motion.p
             className="cta-text"
             initial={{ opacity: 0 }}
@@ -23,7 +30,7 @@ const CTA = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Empieza tu viaje de 21 días hoy mismo y descubre el poder de los pequeños cambios consistentes.
+           {data.cta.subtitulo}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -46,4 +53,4 @@ const CTA = () => {
   );
 };
 
-export default CTA;
+export default CTA; 

@@ -20,7 +20,10 @@ export default function DailySuggestionCard() {
   const levelClass = levelColors[level] || levelColors[1];
 
   return (
-    <div className="relative max-w-sm w-full rounded-3xl p-6 bg-white border border-gray-200 shadow-xl overflow-hidden">
+    <div 
+      className="absolute top-13 right-10 w-[300px] h-[260px] rounded-3xl p-6 bg-white border border-gray-200 shadow-xl overflow-hidden cursor-pointer"
+      onClick={() => navigate("/historial-sugerencias")} // Navegar al hacer clic en la tarjeta
+    >
       {/* Nivel */}
       <span
         className={`inline-flex items-center gap-2 text-xs uppercase font-semibold px-3 py-1.5 rounded-full shadow-inner backdrop-blur-sm border border-white/20 ${levelClass}`}
@@ -45,22 +48,6 @@ export default function DailySuggestionCard() {
           ⚠️ {suggestion.note}
         </p>
       )}
-
-      {/* Botón de navegación */}
-      <button
-        onClick={() => navigate("/historial-sugerencias")} 
-        className="mt-5 relative overflow-hidden inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg hover:scale-105 hover:shadow-pink-300 transition-all text-sm"
-      >
-        Ver historial de sugerencias
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M13 7l5 5m0 0l-5 5m5-5H6"
-          />
-        </svg>
-      </button>
     </div>
   );
 }

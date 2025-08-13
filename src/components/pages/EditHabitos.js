@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../styles/CrearHabito.css';
 import Swal from 'sweetalert2';
 import { motion } from "framer-motion"
 import useHabits from '../hooks/getHabits.js';
@@ -68,7 +69,7 @@ const EditHabitos = () => {
         icon: 'success',
         confirmButtonColor: '#00b894'
       }).then(() => {
-        navigate('/dasboard-habitos');
+        navigate('/dasboard');  
       });
     }
 
@@ -83,7 +84,7 @@ const EditHabitos = () => {
   };
   
   return (
-  
+  <div className="editar-habito-fondo">
     <div className="crear-habito centrado-flex bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 font-sans">
       <div className="w-full max-w-xl">
         <motion.div 
@@ -305,6 +306,7 @@ const EditHabitos = () => {
         </motion.div>
       </div>
     </div>
+    </div> 
   )
 };
 export default EditHabitos;

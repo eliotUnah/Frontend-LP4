@@ -1,3 +1,12 @@
+
+ :root {
+            --primary-dark: #5E35B1;
+            --primary-light: #7E57C2;
+            --accent: #D500F9;
+            --success: #4CAF50;
+            --danger: #F44336;
+        }
+        
 .radio-card input:checked + div {
   border-color: #0d9488; /* teal-600 */
   background-color: #f0fdfa; /* teal-50 */
@@ -39,4 +48,47 @@
   align-items: center;     /* Centra verticalmente */
   min-height: 100vh;       /* Ocupa toda la altura de la pantalla */
   padding: 3rem 1rem;      /* Espaciado opcional */
+}
+
+
+.Crear-habito-fondo {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #7e57c2 0%,    /* Morado más intenso */
+    #ab47bc 15%,    /* Morado suave */
+    #ce93d8 30%,    /* Morado claro */
+    #d1c4e9 45%,    /* Morado suave */
+    #ce93d8 60%,    /* Morado claro */
+    #ab47bc 75%,    /* Morado suave */
+    #7e57c2 90%,    /* Morado más intenso */
+    #e1bee7 100%    /* Color complementario suave */
+  );
+  background-size: 400% 400%;
+  animation: softPurpleFlow 20s ease infinite;
+  background-attachment: fixed;
+}
+
+.editar-habito-fondo {
+margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #7e57c2 0%,    /* Morado más intenso */
+    #ab47bc 15%,    /* Morado suave */
+    #ce93d8 30%,    /* Morado claro */
+    #d1c4e9 45%,    /* Morado suave */
+    #ce93d8 60%,    /* Morado claro */
+    #ab47bc 75%,    /* Morado suave */
+    #7e57c2 90%,    /* Morado más intenso */
+    #e1bee7 100%    /* Color complementario suave */
+  );
+  background-size: 400% 400%;
+  animation: softPurpleFlow 20s ease infinite;
+  background-attachment: fixed;
 }

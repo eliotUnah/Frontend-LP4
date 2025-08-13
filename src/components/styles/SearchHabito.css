@@ -1,4 +1,25 @@
 /* Estilos base */
+
+.seach-fondo {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #f3e5f5 0%,
+    #e1bee7 15%,
+    #d1c4e9 30%,
+    #c5cae9 45%,
+    #d1c4e9 60%,
+    #e1bee7 75%,
+    #f3e5f5 90%,
+    #e8eaf6 100%
+  );
+  background-size: 400% 400%;
+  animation: softPurpleFlow 20s ease infinite;
+  background-attachment: fixed;
+} 
 .search-page {
   max-width: 800px;
   margin: 0 auto;

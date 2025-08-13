@@ -31,7 +31,7 @@ export default function Login() {
       setIsLoading(true);
       await login(email, password); // ✅ usamos el contexto
       console.log("✅ Login exitoso");
-       navigate("/dasboard-habitos");
+       navigate("/dasboard");
     } catch (err) {
       console.error("❌ Error en login:", err.response?.data || err.message);
       setErrorMsg("Correo o contraseña incorrectos");
@@ -94,7 +94,7 @@ export default function Login() {
               ¡Bienvenido de vuelta!
             </Typography>
             <Typography variant="body2" sx={{ color: '#666', fontSize: '14px' }}>
-              Inicia sesión en HabitosPro
+              Inicia sesión en Habituate para continuar
             </Typography>
           </Box>
 

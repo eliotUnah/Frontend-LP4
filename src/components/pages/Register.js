@@ -146,7 +146,7 @@ export default function Register() {
                 fontSize: '14px'
               }}
             >
-              ¡Únete a HabitosPro hoy! Es rápido y fácil.
+              ¡Únete a Habituate hoy! Es rápido y fácil.
             </Typography>
           </Box>
 

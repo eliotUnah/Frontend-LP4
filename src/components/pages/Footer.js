@@ -9,6 +9,11 @@ const Footer = () => {
     legal: ['Privacidad', 'Términos', 'Cookies']
   };
 
+   const socialLinks = {
+    Twitter: "https://twitter.com",
+    Facebook: "https://facebook.com",
+    Instagram: "https://instagram.com"
+  };
   return (
     <footer className="footer">
       <div className="container">
@@ -21,9 +26,9 @@ const Footer = () => {
             >
               <Check className="icon" />
             </motion.div>
-            <h3 className="footer-brand-name">HábitoPro</h3>
+            <h3 className="footer-brand-name">Habituate</h3>
             <p className="footer-text">
-              Transformando vidas a través de hábitos positivos desde 2023.
+              Transformando vidas a través de hábitos positivos desde 2025.
             </p>
           </div>
 
@@ -44,16 +49,18 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p className="copyright">© 2023 HábitoPro. Todos los derechos reservados.</p>
-          <div className="social-links">
-            {['Twitter', 'Facebook', 'Instagram'].map((social) => (
+          <p className="copyright">© 2025 Habituate. Todos los derechos reservados.</p>
+        <div className="social-links">
+            {Object.entries(socialLinks).map(([name, url]) => (
               <motion.a
-                key={social}
-                href="#"
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="social-link"
                 whileHover={{ y: -3 }}
               >
-                {social}
+                {name}
               </motion.a>
             ))}
           </div>
@@ -63,4 +70,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer; 
